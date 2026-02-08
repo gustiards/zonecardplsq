@@ -6,288 +6,135 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#1e40af">
-
-  <!-- ICON -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <style>
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       min-height: 100vh;
     }
-
     header {
-      background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-      color: white;
-      padding: 20px 14px;
+      background: linear-gradient(135deg, #1e3a8a, #1e40af);
+      color: #fff;
+      padding: 20px;
       text-align: center;
-      font-size: 20px;
       font-weight: bold;
       letter-spacing: 2px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      position: relative;
-      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
     }
-
-    header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: pulse 3s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.1); opacity: 0.3; }
-    }
-
     .container {
-      padding: 20px 16px;
-      padding-bottom: 90px;
+      padding: 20px 16px 90px;
       max-width: 480px;
       margin: auto;
     }
-
-    .zone-box, .card, .form-card {
-      background: white;
+    .zone-box,.card,.form-card {
+      background: #fff;
       padding: 20px;
       border-radius: 20px;
       margin-bottom: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0,0,0,.15);
     }
-
-    .zone-box {
-      background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-      border: 2px solid #e2e8f0;
-    }
-
-    .card {
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
-      transition: left 0.5s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 35px rgba(37, 99, 235, 0.3);
-    }
-
-    .card:hover::before {
-      left: 100%;
-    }
-
-    .card:active {
-      transform: translateY(-2px);
-    }
-
+    .card { cursor: pointer; }
     label {
       font-weight: 600;
       font-size: 14px;
+      margin-top: 14px;
       display: block;
-      margin-top: 16px;
-      color: #334155;
     }
-
     input {
       width: 100%;
       padding: 14px;
-      margin-top: 8px;
+      margin-top: 6px;
       border-radius: 12px;
       border: 2px solid #e2e8f0;
-      font-size: 15px;
-      transition: all 0.3s ease;
       background: #f8fafc;
+      font-size: 15px;
     }
-
     input:focus {
       outline: none;
       border-color: #2563eb;
-      background: white;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      background: #fff;
     }
-
     h3 {
       margin: 0;
       color: #1e40af;
-      font-size: 18px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
-
-    h3::before {
-      content: '📋';
-      font-size: 24px;
-    }
-
-    p {
-      margin: 8px 0 0;
-      color: #64748b;
-      font-size: 14px;
-    }
+    h3::before { content: "📋"; }
+    p { margin: 6px 0 0; color: #64748b; font-size: 14px; }
 
     .page { display: none; }
     .page.active { display: block; }
 
     button.submit {
-      margin-top: 24px;
+      margin-top: 20px;
       width: 100%;
       padding: 16px;
-      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-      color: white;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: #fff;
       border: none;
       border-radius: 14px;
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-      position: relative;
-      overflow: hidden;
     }
-
-    button.submit::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s, height 0.6s;
-    }
-
-    button.submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
-    }
-
-    button.submit:active::before {
-      width: 300px;
-      height: 300px;
-    }
-
     button.submit:disabled {
       background: #94a3b8;
       cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
     }
 
-    /* Bottom Navigation */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       height: 70px;
-      background: white;
+      background: #fff;
       display: flex;
       justify-content: space-around;
       align-items: center;
       border-top: 1px solid #e2e8f0;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-      z-index: 1000;
     }
-
     .nav-item {
       text-align: center;
       font-size: 12px;
-      color: #64748b;
       cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-      font-weight: 500;
+      color: #64748b;
     }
+    .nav-item i { font-size: 26px; display: block; }
 
-    .nav-item:hover {
-      background: #f1f5f9;
-      color: #2563eb;
-    }
-
-    .nav-item:active {
-      transform: scale(0.95);
-    }
-
-    .nav-item i {
-      display: block;
-      font-size: 28px;
-      margin-bottom: 4px;
-      transition: transform 0.3s ease;
-    }
-
-    .nav-item:hover i {
-      transform: translateY(-3px);
-    }
-
-    /* Loading Overlay */
     .loading-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.7);
+      inset: 0;
+      background: rgba(0,0,0,.6);
       z-index: 9999;
       justify-content: center;
       align-items: center;
     }
-
-    .loading-overlay.active {
-      display: flex;
-    }
-
+    .loading-overlay.active { display: flex; }
     .loading-content {
-      background: white;
-      padding: 30px 40px;
+      background: #fff;
+      padding: 30px;
       border-radius: 20px;
       text-align: center;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
     }
-
     .spinner {
       border: 4px solid #f3f4f6;
       border-top: 4px solid #2563eb;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       animation: spin 1s linear infinite;
-      margin: 0 auto 15px;
+      margin: auto;
     }
-
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .loading-text {
-      color: #334155;
-      font-weight: 600;
-      font-size: 16px;
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -296,178 +143,145 @@
 
 <header>FORM MANAGEMENT</header>
 
-<!-- Loading Overlay -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="loading-content">
     <div class="spinner"></div>
-    <div class="loading-text">Memproses data...</div>
+    <p>Memproses data...</p>
   </div>
 </div>
 
 <div class="container">
 
-  <!-- ZONE GLOBAL -->
   <div class="zone-box">
     <label>ZONE</label>
-    <input id="zone" placeholder="Harus di isi">
+    <input id="zone" placeholder="Harus di isi" required>
   </div>
 
-  <!-- HOME -->
   <div id="home" class="page active">
     <div class="card" onclick="openPage('firstCounting')">
       <h3>FIRST COUNTING</h3>
       <p>Take Firstcount</p>
     </div>
-
     <div class="card" onclick="openPage('scanning')">
       <h3>SCANNING</h3>
       <p>Take Scanning</p>
     </div>
   </div>
 
-  <!-- FIRST COUNTING -->
   <div id="firstCounting" class="page">
     <div class="form-card">
-      <h3>FIRST COUNTING (YELLOW TAG)</h3>
-
+      <h3>FIRST COUNTING</h3>
       <label>Counter Name</label>
       <input id="fc_counter">
-
       <label>Time In</label>
       <input type="time" id="fc_time_in">
-
       <label>Time Out</label>
       <input type="time" id="fc_time_out">
-
       <label>Checked</label>
       <input id="fc_checked">
-
-      <button class="submit" onclick="submitData()">SUBMIT</button>
+      <button class="submit" onclick="submitData(this)">SUBMIT</button>
     </div>
   </div>
 
-  <!-- SCANNING -->
   <div id="scanning" class="page">
     <div class="form-card">
       <h3>SCANNING</h3>
-
       <label>Scanner Name</label>
       <input id="scan_name">
-
       <label>Time In</label>
       <input type="time" id="scan_time_in">
-
       <label>Time Out</label>
       <input type="time" id="scan_time_out">
-
-      <button class="submit" onclick="submitData()">SUBMIT</button>
+      <button class="submit" onclick="submitData(this)">SUBMIT</button>
     </div>
   </div>
 
 </div>
 
-<!-- Bottom Navigation -->
 <div class="bottom-nav">
-  <div class="nav-item" onclick="goBack()">
-    <i class="material-icons">arrow_back</i>
-    Back
-  </div>
-  <div class="nav-item" onclick="openPage('home')">
-    <i class="material-icons">home</i>
-    Home
-  </div>
-  <div class="nav-item" onclick="openSheet()">
-    <i class="material-icons">table_view</i>
-    Sheet
-  </div>
+  <div class="nav-item" onclick="goBack()"><i class="material-icons">arrow_back</i>Back</div>
+  <div class="nav-item" onclick="openPage('home')"><i class="material-icons">home</i>Home</div>
+  <div class="nav-item" onclick="openSheet()"><i class="material-icons">table_view</i>Sheet</div>
 </div>
 
 <script>
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyMrZTIcx42K3WvePp8OPyslgg-C1B5AI4Py6ldEjtHN9-n3NyVpaxBiqyd7lFCTRdMZQ/exec';
-  const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1jeX-nCJjPx83usf8yMPr6Aoi18XpClPBvzkBkGorx0Y/edit?usp=sharing';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyMrZTIcx42K3WvePp8OPyslgg-C1B5AI4Py6ldEjtHN9-n3NyVpaxBiqyd7lFCTRdMZQ/exec';
+const SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1jeX-nCJjPx83usf8yMPr6Aoi18XpClPBvzkBkGorx0Y/edit';
 
-  let historyPage = ['home'];
+let historyPage = ['home'];
 
-  function openPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(page).classList.add('active');
-    historyPage.push(page);
+function openPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  if (historyPage.at(-1) !== page) historyPage.push(page);
+}
+
+function goBack() {
+  historyPage.pop();
+  openPage(historyPage.pop() || 'home');
+}
+
+function openSheet() {
+  window.open(SPREADSHEET_URL, '_blank');
+}
+
+function showLoading() {
+  document.getElementById('loadingOverlay').classList.add('active');
+}
+function hideLoading() {
+  document.getElementById('loadingOverlay').classList.remove('active');
+}
+
+function submitData(btn) {
+  if (!zone.value.trim()) {
+    alert('ZONE wajib diisi');
+    return;
   }
 
-  function goBack() {
-    historyPage.pop();
-    const last = historyPage.pop() || 'home';
-    openPage(last);
+  const page = document.querySelector('.page.active').id;
+  let payload = { zone: zone.value.trim() };
+
+  if (page === 'firstCounting') {
+    payload.fc_counter = fc_counter.value;
+    payload.fc_time_in = fc_time_in.value;
+    payload.fc_time_out = fc_time_out.value;
+    payload.fc_checked = fc_checked.value;
   }
 
-  function openSheet() {
-    window.open(SPREADSHEET_URL, '_blank');
+  if (page === 'scanning') {
+    payload.scan_name = scan_name.value;
+    payload.scan_time_in = scan_time_in.value;
+    payload.scan_time_out = scan_time_out.value;
   }
 
-  function showLoading() {
-    document.getElementById('loadingOverlay').classList.add('active');
-  }
+  btn.disabled = true;
+  showLoading();
 
-  function hideLoading() {
-    document.getElementById('loadingOverlay').classList.remove('active');
-  }
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(r => {
+    hideLoading();
+    btn.disabled = false;
+    alert(r.message);
+    if (r.success) openPage('home');
+  })
+  .catch(() => {
+    hideLoading();
+    btn.disabled = false;
+    alert('Gagal terhubung ke server');
+  });
+}
 
-  function submitData() {
-    if (!zone.value.trim()) {
-      alert('ZONE wajib diisi');
-      return;
-    }
-
-    const payload = {
-      zone: zone.value.trim(),
-      fc_counter: fc_counter?.value,
-      fc_time_in: fc_time_in?.value,
-      fc_time_out: fc_time_out?.value,
-      fc_checked: fc_checked?.value,
-      scan_name: scan_name?.value,
-      scan_time_in: scan_time_in?.value,
-      scan_time_out: scan_time_out?.value
-    };
-
-    // Disable submit button
-    const submitBtn = event.target;
-    submitBtn.disabled = true;
-    
-    // Show loading overlay
-    showLoading();
-
-    fetch(WEB_APP_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    })
-    .then(res => res.json())
-    .then(res => {
-      hideLoading();
-      submitBtn.disabled = false;
-      alert(res.message);
-      if (res.success) {
-        // Clear all form inputs including zone
-        document.getElementById('zone').value = '';
-        document
-          .querySelectorAll('#firstCounting input, #scanning input')
-          .forEach(i => i.value = '');
-      }
-    })
-    .catch(() => {
-      hideLoading();
-      submitBtn.disabled = false;
-      alert('Gagal terhubung ke server');
-    });
-  }
-</script>
-<script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then(reg => console.log('SW registered', reg))
-      .catch(err => console.error('SW failed', err));
+    navigator.serviceWorker.register('/sw.js');
   });
 }
 </script>
+
 </body>
 </html>
